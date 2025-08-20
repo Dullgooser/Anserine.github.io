@@ -1,2 +1,87 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Anserine's_Blog</title><link>https://Dullgooser.github.io/Anserine.github.io</link><description>Blog which records my tech improvement</description><copyright>Anserine's_Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/154518140?u=6dd772445531d4cf5fb4124093ea680c1833251f&amp;v=4</url><title>avatar</title><link>https://Dullgooser.github.io/Anserine.github.io</link></image><lastBuildDate>Tue, 19 Aug 2025 16:13:48 +0000</lastBuildDate><managingEditor>Anserine's_Blog</managingEditor><ttl>60</ttl><webMaster>Anserine's_Blog</webMaster></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Anserine's_Blog</title><link>https://Dullgooser.github.io/Anserine.github.io</link><description>Blog which records my tech improvement</description><copyright>Anserine's_Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/154518140?u=6dd772445531d4cf5fb4124093ea680c1833251f&amp;v=4</url><title>avatar</title><link>https://Dullgooser.github.io/Anserine.github.io</link></image><lastBuildDate>Wed, 20 Aug 2025 16:13:33 +0000</lastBuildDate><managingEditor>Anserine's_Blog</managingEditor><ttl>60</ttl><webMaster>Anserine's_Blog</webMaster><item><title>Program_Hash</title><link>https://Dullgooser.github.io/Anserine.github.io/post/Program_Hash.html</link><description># 哈希表
+## 两数之和
+这道题给我做的完全没有思路，大概是因为我之前基本上不怎么使用map的原因，从这道题可以看出map我完全不会用。</description><guid isPermaLink="true">https://Dullgooser.github.io/Anserine.github.io/post/Program_Hash.html</guid><pubDate>Fri, 15 Aug 2025 04:58:50 +0000</pubDate></item><item><title>Program_linked_list</title><link>https://Dullgooser.github.io/Anserine.github.io/post/Program_linked_list.html</link><description># 链表代码随想录练习
+
+## 203.移除链表元素
+这道题没什么难度，记住不要丢失节点就行了
+
+## 206.翻转链表
+```cpp
+ListNode* reverseList(ListNode* head) {
+        ListNode* front = nullptr;
+        while(head != nullptr){
+            ListNode* temp = head-&gt;next;
+            ListNode* temp1 = head;
+            head-&gt;next = front;
+            front = temp1;
+            head = temp;
+        }
+        return front;
+    }
+```
+翻转链表就是双指针法的翻版，主意好两个指针和循环结束的判定条件就行了
+
+## 24.两两交换列表中的节点
+```cpp
+ListNode* swapPairs(ListNode* head) {
+        if(head == nullptr || head-&gt;next == nullptr) return head;
+        ListNode* ans = head-&gt;next;
+        ListNode* front = new ListNode(0, head);
+        ListNode* back = head-&gt;next;
+        while(head != nullptr &amp;&amp; head-&gt;next != nullptr){
+            front-&gt;next = head-&gt;next;
+            back = head-&gt;next-&gt;next;
+            head-&gt;next-&gt;next = head;
+            head-&gt;next = back;
+            front = head;
+            head = back;
+        }
+        return ans;
+    }
+```
+这道题相当于是翻转链表的进阶，我是使用了记录两个一组之后前后两个指针的方式来进行翻转
+
+## 19.删除链表的倒数第N个节点
+```cpp
+ ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* temp = head;
+        for(int i = 1; i &lt; n; i++){
+            head = head-&gt;next;
+        }
+        ListNode* front = new ListNode(0, temp);
+        ListNode* dummyhead = front;
+        while(head != nullptr &amp;&amp; head-&gt;next != nullptr){
+            head = head-&gt;next;
+            temp = temp-&gt;next;
+            front = front-&gt;next;
+        }
+        front-&gt;next = temp-&gt;next;
+        delete temp;
+        return dummyhead-&gt;next;
+    }
+```
+这道题有一个比较讨巧的方法，就是把题目给出的n当作距离来看，也就是和链表表尾的距离，那么用两个指针就行了，一个指向现在的节点，一个指向距离n的节点，距离n的节点遍历到链表尾就行了
+
+## 142.环形链表
+```cpp
+ ListNode *detectCycle(ListNode *head) {
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(fast != NULL &amp;&amp; fast-&gt;next != NULL){
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
+            if(fast == slow){
+                ListNode* index1 = fast;
+                ListNode* index2 = head;
+                while(index1 != index2){
+                    index1 = index1-&gt;next;
+                    index2 = index2-&gt;next;
+                }
+                return index1;
+            }
+        }
+        return NULL;
+    }
+```
+环形链表这道题一开始没想出来，看了题解才有点思路。</description><guid isPermaLink="true">https://Dullgooser.github.io/Anserine.github.io/post/Program_linked_list.html</guid><pubDate>Wed, 13 Aug 2025 04:59:29 +0000</pubDate></item><item><title>ysyx_question's_wisdom</title><link>https://Dullgooser.github.io/Anserine.github.io/post/ysyx_question%27s_wisdom.html</link><description>我并不是擅长向别人提问的人，大多数问题我以前的一贯解决方式是先通过自己消化，苦思冥想，抓耳挠腮，很多时候往往一个人闷着头想想着想着，现有的问题无法解决，就搁置一旁，兴许再也不会动了。</description><guid isPermaLink="true">https://Dullgooser.github.io/Anserine.github.io/post/ysyx_question%27s_wisdom.html</guid><pubDate>Tue, 22 Jul 2025 11:07:26 +0000</pubDate></item><item><title>Test</title><link>https://Dullgooser.github.io/Anserine.github.io/post/Test.html</link><description>test。</description><guid isPermaLink="true">https://Dullgooser.github.io/Anserine.github.io/post/Test.html</guid><pubDate>Sat, 14 Jun 2025 13:00:02 +0000</pubDate></item></channel></rss>
